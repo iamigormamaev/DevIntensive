@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">DevIntensive</string>
+    <string name="app_name">Мамаев Игорь</string>
+    <string name="red_btn">RED</string>
+    <string name="green_btn">GREEN</string>
+    <string name="hint_mobile_phone_et">Мобильный телефон</string>
+    <string name="phone_num">8 800 555 10 10</string>
+    <string name="hint_e_mail_et">E-mail</string>
+    <string name="e_mail">igor@gmail.com</string>
+    <string name="hint_vk_et">Профиль VK</string>
+    <string name="vk_login">mamaev_igor</string>
+    <string name="hint_repo_et">Репозитарий</string>
+    <string name="repo">github.com/iamigormamaev/DevIntensive</string>
+    <string name="hint_about_me_et">О себе</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="score_reit_5">5</string>
+    <string name="score_desription_rating">Рейтинг</string>
+    <string name="score_description_lines_code">Написано строк кода</string>
+    <string name="score_description_projects">Проектов</string>
 </resources>
