@@ -16,4 +16,8 @@
     <string name="score_desription_rating">Рейтинг</string>
     <string name="score_description_lines_code">Написано строк кода</string>
     <string name="score_description_projects">Проектов</string>
+    <string name="drawer_menu_my_profile">Мой профиль</string>
+    <string name="drawer_menu_team">Команда</string>
+    <string name="drawer_header_user_name">Мамаев Игорь</string>
+    <string name="drawer_header_mail">my@mail.ru</string>
 </resources>
