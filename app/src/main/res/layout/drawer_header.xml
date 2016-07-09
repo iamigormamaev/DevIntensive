@@ -13,7 +13,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="@dimen/spacing_normal_16"
-        android:src="@drawable/userfoto"
+        android:src="@drawable/user_photo"
         />
 
     <LinearLayout

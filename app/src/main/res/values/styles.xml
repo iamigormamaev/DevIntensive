@@ -74,11 +74,11 @@
     </style>
 
     <style name="text_view_score_box.score">
-        <item name="android:textSize">@dimen/font_med_24</item>
+        <item name="android:textSize">24dp</item>
     </style>
 
     <style name="text_view_score_box.description">
-        <item name="android:textSize">@dimen/font_normal_16</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
     <style name="custom_dialog">
@@ -89,7 +89,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/profile_image_size</item>
         <item name="android:scaleType">centerCrop</item>
-        <item name="android:fitsSystemWindows">true</item>
+
     </style>
 
     <style name="custom_AppBarLayout">
@@ -105,5 +105,32 @@
         <item name="android:theme">@style/AppTheme.PopupOverlay</item>
 
     </style>
+
+    <style name="login_form">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">false</item>
+        <item name="android:enabled">false</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_large_18</item>
+        <item name="android:textColorHint">@color/grey_input_hint</item>
+    </style>
+
+    <style name="login_form.login">
+        <item name="android:inputType">text</item>
+        <item name="android:focusable">true</item>
+        <item name="android:enabled">true</item>
+        <item name="android:hint">@string/hint_login</item>
+    </style>
+
+    <style name="login_form.password">
+        <item name="android:inputType">textPassword</item>
+        <item name="android:focusable">true</item>
+        <item name="android:enabled">true</item>
+        <item name="android:hint">@string/hint_password</item>
+    </style>
+
+
 
 </resources>

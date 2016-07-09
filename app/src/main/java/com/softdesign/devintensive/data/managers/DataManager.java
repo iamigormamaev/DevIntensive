@@ -6,7 +6,7 @@ public class DataManager {
 
     private PreferenceManager mPreferenceManager;
 
-    public DataManager() {
+    private DataManager() {
         this.mPreferenceManager = new PreferenceManager();
     }
 

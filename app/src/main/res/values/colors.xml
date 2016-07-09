@@ -5,6 +5,11 @@
     <color name="color_accent">#FF4081</color>
     <color name="grey">#5d5d5d</color>
     <color name="grey_light">#9c9c9c</color>
+    <color name="grey_background">#454545</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="auth_text">#cf3c18</color>
+    <color name="submit_button_color">#f9f9f9</color>
+    <color name="grey_input_hint">#bfbfbf</color>
+
 </resources>
