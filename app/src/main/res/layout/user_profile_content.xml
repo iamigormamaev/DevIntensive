@@ -1,0 +1,262 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.activities.MainActivity">
+        <!--ScoreBoxes-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_largerest_112"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+            <!--Scorebox rating-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/score_box_rating_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_desription_rating"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_size"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="28dp"
+                android:background="@color/grey_light"></View>
+            <!--Scorebox lines of code-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:id="@+id/score_box_lines_code_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_description_lines_code"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_size"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="28dp"
+                android:background="@color/grey_light"></View>
+            <!--Scorebox projects-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.25
+            ">
+
+                <TextView
+                    android:id="@+id/score_box_projects_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_description_projects"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Account fields-->
+        <!-- mobile phone-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_call_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_mobile_phone_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_mobile_phone_et"
+                        android:inputType="phone"
+                        android:text="@string/phone_num"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/account_mobile_phone_call_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_phone_in_talk_gray_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/view_delimiter"/>
+        <!--email-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_email_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_email_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_e_mail_et"
+                        android:inputType="textEmailAddress"
+                        android:text="@string/e_mail"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/account_email_sent_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_send_gray_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/view_delimiter"/>
+        <!--vk account-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_vk_logo_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_vk_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_vk_et"
+                        android:text="@string/vk_login"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/account_vk_open_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_look_gray_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/view_delimiter"/>
+        <!--repository-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_github_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/size_large_72">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_repository_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_repo_et"
+                        android:text="@string/repo"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/account_repository_open_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_look_gray_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/view_delimiter"/>
+        <!--about me-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_account_circle_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_about_me_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_about_me_et"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:text="@string/lorem_ipsum"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -20,4 +20,16 @@
     <string name="drawer_menu_team">Команда</string>
     <string name="drawer_header_user_name">Мамаев Игорь</string>
     <string name="drawer_header_mail">my@mail.ru</string>
+    <string name="change_user_photo">Изменить фото профиля</string>
+    <string name="user_profile.dialog_galery">Загрузить из галереи</string>
+    <string name="user_profile.dialog_make_photo">Сделать снимок</string>
+    <string name="cancel">Отмена</string>
+    <string name="user_profile_dialog_title">Изменить фотографию профиля</string>
+    <string name="user_profile_choose_message">выберите фото</string>
+    <string name="login_title">ВОЙТИ</string>
+    <string name="login_forgot_password">Забыли пароль?</string>
+    <string name="hint_login">E-mail</string>
+    <string name="hint_password">Пароль</string>
+    <string name="need_to_permission">Для корректной работы необходимо дать требуемые разрешения</string>
+    <string name="give_permission">Разрешить</string>
 </resources>
