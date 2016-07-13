@@ -10,10 +10,11 @@
     >
 
     <ImageView
+        android:id="@+id/header_avatar_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="@dimen/spacing_normal_16"
-        android:src="@drawable/user_photo"
+        android:src="@drawable/header_user_photo"
         />
 
     <LinearLayout
@@ -24,7 +25,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/user_name_txt"
+            android:id="@+id/header_user_name_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -34,7 +35,7 @@
             />
 
         <TextView
-            android:id="@+id/user_email_txt"
+            android:id="@+id/header_user_email_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"

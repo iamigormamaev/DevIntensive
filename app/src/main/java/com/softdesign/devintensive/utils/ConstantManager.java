@@ -1,8 +1,5 @@
 package com.softdesign.devintensive.utils;
 
-/**
- * Created by Игорь on 23.06.2016.
- */
 public interface ConstantManager {
     String TAG_PREFIX = "DEV ";
     String EDIT_MODE_KEY = "EDIT_MODE_KEY";
@@ -12,7 +9,15 @@ public interface ConstantManager {
     String USER_GIT_KEY = "USER_GIT_KEY";
     String USER_BIO_KEY = "USER_BIO_KEY";
     String USER_PHOTO_KEY = "USER_PHOTO_KEY";
-
+    String AUTH_TOKEN_KEY = "AUTH_TOKEN_KEY";
+    String USER_ID_KEY = "USER_ID_KEY";
+    String USER_RATING_VALUE="USER_RATING_VALUE";
+    String USER_CODES_LINES_VALUE = "USER_CODES_LINES_VALUE";
+    String USER_PROJECT_VALUE = "USER_PROJECT_VALUE";
+    String USER_FIRST_NAME_KEY ="USER_FIRST_NAME_KEY" ;
+    String USER_SECOND_NAME_KEY = "USER_SECOND_NAME_KEY";
+    String USER_USER_PHOTO_KEY = "USER_USER_PHOTO_KEY";
+    String USER_USER_AVATAR_KEY = "USER_USER_AVATAR_KEY";
 
     int LOAD_PROFILE_PHOTO = 1;
     int REQUEST_CAMERA_PICTURE = 2;
@@ -20,4 +25,7 @@ public interface ConstantManager {
     int PERMISSION_REQUEST_SETTINGS_CODE = 4;
     int CAMERA_REQUEST_PERMISSION_CODE = 5;
     int DIAL_REQUEST_PERMISSION_CODE = 6;
+
+
+
 }
