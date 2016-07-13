@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@color/grey_background"
     tools:context="com.softdesign.devintensive.ui.activities.AuthActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/login_bg"
+            android:scaleType="centerCrop"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,6 +54,7 @@
                     android:layout_marginTop="@dimen/spacing_normal_16">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/auth_login_et"
                         style="@style/login_form.login"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -51,10 +64,12 @@
                     android:layout_marginTop="@dimen/spacing_normal_16">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/auth_password_et"
                         style="@style/login_form.password"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
+                    android:id="@+id/auth_sign_in_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -69,6 +84,7 @@
 
 
                 <TextView
+                    android:id="@+id/auth_remember_password_tw"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -86,5 +102,5 @@
             android:elevation="3dp"/>
     </RelativeLayout>
 
-
-</LinearLayout>
+    </FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

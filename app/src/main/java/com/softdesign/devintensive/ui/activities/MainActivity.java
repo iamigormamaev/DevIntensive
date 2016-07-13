@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -21,6 +22,8 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -32,6 +35,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.softdesign.devintensive.R;
@@ -71,6 +75,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
     private ImageView mProfileImage;
+    private TextView mUserValueRating, mUserValueCodeLines, mUserValueProjects;
+    private List<TextView> mUserValues;
+    private ImageView mHeaderAvatar;
 
 
     @Override
@@ -122,6 +129,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserBio = (EditText) findViewById(R.id.account_about_me_ev);
         mDataManager = DataManager.getInstance();
         mProfileImage = (ImageView) findViewById(R.id.user_photo_img);
+        mUserValueRating = (TextView) findViewById(R.id.score_box_rating_tv);
+        mUserValueCodeLines = (TextView) findViewById(R.id.score_box_lines_code_tv);
+        mUserValueProjects = (TextView) findViewById(R.id.score_box_projects_tv);
+
 
         mUserInfoViews = new ArrayList<>();
         mUserInfoViews.add(mUserPhone);
@@ -129,13 +140,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfoViews.add(mUserVk);
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUserBio);
+
+        mUserValues = new ArrayList<>();
+        mUserValues.add(mUserValueRating);
+        mUserValues.add(mUserValueCodeLines);
+        mUserValues.add(mUserValueProjects);
+
         Log.d(TAG, "onCreate");
         setupToolbar();
         setupDrawer();
-        loadUserInfoValue();
+
+
+        initUserFields();
+        initUserInfoValues();
         Picasso.with(this)
-                .load(mDataManager.getInstance().getPreferenceManager().loadUserPhoto())
+                .load(DataManager.getInstance().getPreferenceManager().loadUserPhoto())
                 .placeholder(R.drawable.user_bg)
+                .into(mProfileImage);
+
+        Picasso.with(this)
+                .load(DataManager.getInstance().getPreferenceManager().getUserPhoto())
                 .into(mProfileImage);
 
 
@@ -265,9 +289,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 item.setChecked(true);
                 mNavigationDraver.closeDrawer(GravityCompat.START);
                 return false;
-
             }
         });
+        mHeaderAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.header_avatar_iv);
+        Picasso.with(this)
+                .load(DataManager.getInstance().getPreferenceManager().getAvatarImage())
+                .into(mHeaderAvatar);
+//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.header_user_photo));
+//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), BitmapFactory.
+//        roundedBitmapDrawable.setCircular(true);
+//        mHeaderAvatar.setImageDrawable(roundedBitmapDrawable);
+
+        TextView headerFirstSecondName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_user_name_txt);
+        headerFirstSecondName.setText(DataManager.getInstance().getPreferenceManager().getFirstNameUser() + " "
+                + DataManager.getInstance().getPreferenceManager().getSecondNameUser());
+
+        TextView headerEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_user_email_txt);
+        headerEmail.setText(DataManager.getInstance().getPreferenceManager().loadUserFields().get(1));
+
 
     }
 
@@ -284,7 +323,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         } else {
             for (EditText userValue : mUserInfoViews) {
-                saveUserInfoValue();
+                saveUserFields();
                 userValue.setEnabled(false);
                 userValue.setFocusable(false);
                 userValue.setFocusableInTouchMode(false);
@@ -298,21 +337,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    private void loadUserInfoValue() {
-        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
+    private void initUserFields() {
+        List<String> userData = mDataManager.getPreferenceManager().loadUserFields();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
         }
     }
 
 
-    private void saveUserInfoValue() {
+    private void saveUserFields() {
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView :
                 mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
-        mDataManager.getPreferenceManager().saveUserProfileData(userData);
+        mDataManager.getPreferenceManager().saveUserFields(userData);
     }
 
     private void loadPhotoFromGallery() {
@@ -467,4 +506,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }).show();
         }
     }
+
+    public void initUserInfoValues() {
+        List<String> userData = DataManager.getInstance().getPreferenceManager().loadUserValues();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserValues.get(i).setText(userData.get(i));
+        }
+    }
+
+
 }
