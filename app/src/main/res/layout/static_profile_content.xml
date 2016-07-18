@@ -1,0 +1,142 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--ScoreBoxes-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_largerest_112"
+            android:background="@color/grey"
+            android:orientation="horizontal">
+            <!--Scorebox rating-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/score_box_rating_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_description_rating"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_size"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="28dp"
+                android:background="@color/grey_light"></View>
+            <!--Scorebox lines of code-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:id="@+id/score_box_lines_code_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_description_lines_code"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/line_size"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="28dp"
+                android:layout_marginTop="28dp"
+                android:background="@color/grey_light"></View>
+            <!--Scorebox projects-->
+            <LinearLayout
+                style="@style/linear_layout_score_box"
+                android:layout_weight="0.25
+            ">
+
+                <TextView
+                    android:id="@+id/score_box_projects_tv"
+                    style="@style/text_view_score_box.score"
+                    android:text="@string/score_reit_5"
+                    />
+
+                <TextView
+                    style="@style/text_view_score_box.description"
+                    android:text="@string/score_description_projects"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_github_gray_24dp"/>
+
+            <ListView
+                android:id="@+id/repository_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_medium_32">
+
+            </ListView>
+
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/view_horizontal_delimiter"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_account_circle_gray_24dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_edit_text"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/account_about_me_ev"
+                        style="@style/disable_edit_text"
+                        android:hint="@string/hint_about_me_et"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:text="@string/lorem_ipsum"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -58,7 +58,7 @@ public class PreferenceManager {
     }
 
     public String getAuthToken() {
-        return mSharedPreferences.getString(ConstantManager.AUTH_TOKEN_KEY, null);
+        return mSharedPreferences.getString(ConstantManager.AUTH_TOKEN_KEY, "");
 
     }
 
@@ -69,7 +69,7 @@ public class PreferenceManager {
     }
 
     public String getUserId() {
-        return mSharedPreferences.getString(ConstantManager.USER_ID_KEY, null);
+        return mSharedPreferences.getString(ConstantManager.USER_ID_KEY, "");
     }
 
     public void saveUserValues(int[] userValues) {

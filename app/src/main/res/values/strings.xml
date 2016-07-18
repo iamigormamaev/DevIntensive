@@ -13,7 +13,8 @@
     <string name="hint_about_me_et">О себе</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="score_reit_5">5</string>
-    <string name="score_desription_rating">Рейтинг</string>
+    <string name="score_reit_0">0</string>
+    <string name="score_description_rating">Рейтинг</string>
     <string name="score_description_lines_code">Написано строк кода</string>
     <string name="score_description_projects">Проектов</string>
     <string name="drawer_menu_my_profile">Мой профиль</string>
@@ -32,4 +33,9 @@
     <string name="hint_password">Пароль</string>
     <string name="need_to_permission">Для корректной работы необходимо дать требуемые разрешения</string>
     <string name="give_permission">Разрешить</string>
+
+    <string name="ff_regular">sans-serif</string>
+    <string name="ff_medium">sans-serif-medium</string>
+    <string name="view_profile">Просмотр</string>
+    <string name="first_name_second_name">Фамилия Имя</string>
 </resources>

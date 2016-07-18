@@ -6,11 +6,22 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark">
+
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
+
 
     <style name="icon">
         <item name="android:layout_width">@dimen/size_small_24</item>
@@ -48,9 +59,16 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="view_delimiter">
+    <style name="view_horizontal_delimiter">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/line_size</item>
+        <item name="android:layout_marginLeft">@dimen/size_large_72</item>
+        <item name="android:background">@color/grey_light</item>
+    </style>
+
+    <style name="view_vertical_delimiter">
+        <item name="android:layout_width">@dimen/line_size</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/size_large_72</item>
         <item name="android:background">@color/grey_light</item>
     </style>
@@ -129,6 +147,14 @@
         <item name="android:focusable">true</item>
         <item name="android:enabled">true</item>
         <item name="android:hint">@string/hint_password</item>
+    </style>
+
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+
     </style>
 
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import com.softdesign.devintensive.data.network.RestService;
 import com.softdesign.devintensive.data.network.ServiceGenerator;
 import com.softdesign.devintensive.data.network.req.UserLoginReq;
+import com.softdesign.devintensive.data.network.res.UserListRes;
 import com.softdesign.devintensive.data.network.res.UserModelRes;
 import com.softdesign.devintensive.utils.DevIntensiveApplication;
 
@@ -32,6 +33,10 @@ this.mRestService = ServiceGenerator.createService(RestService.class);
 
     public PreferenceManager getPreferenceManager() {
         return mPreferenceManager;
+    }
+
+    public Call<UserListRes> getUserList() {
+        return mRestService.getUserList();
     }
 
 
