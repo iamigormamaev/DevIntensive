@@ -3,10 +3,12 @@ package com.softdesign.devintensive.ui.activities;
 import android.content.Intent;
 import android.net.Uri;
 
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,25 +17,37 @@ import android.widget.TextView;
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.data.network.req.UserLoginReq;
+import com.softdesign.devintensive.data.network.res.UserListRes;
 import com.softdesign.devintensive.data.network.res.UserModelRes;
+import com.softdesign.devintensive.data.storage.models.Repository;
+import com.softdesign.devintensive.data.storage.models.RepositoryDao;
+import com.softdesign.devintensive.data.storage.models.User;
+
+import com.softdesign.devintensive.data.storage.models.UserDao;
+
+import com.softdesign.devintensive.utils.AppConfig;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.softdesign.devintensive.utils.NetworkStatusChecker;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private static final String TAG = ConstantManager.TAG_PREFIX + " AuthActivity:";
     EditText mLogin, mPassword;
     Button mSignIn;
     TextView mRememberPassword;
     CoordinatorLayout mCoordinatorLayout;
 
     private DataManager mDataManager;
+    private RepositoryDao mRepositoryDao;
+    private UserDao mUserDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +60,14 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         mRememberPassword = (TextView) findViewById(R.id.auth_remember_password_tw);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.auth_coordinator_layout);
         mDataManager = DataManager.getInstance();
+        mUserDao = mDataManager.getDaoSession().getUserDao();
+        mRepositoryDao = mDataManager.getDaoSession().getRepositoryDao();
 
         mRememberPassword.setOnClickListener(this);
         mSignIn.setOnClickListener(this);
 
-
     }
+
 
     @Override
     public void onClick(View view) {
@@ -77,13 +93,21 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     private void loginSuccess(UserModelRes userModel) {
         mDataManager.getPreferenceManager().saveUserToken(userModel.getData().getToken());
         mDataManager.getPreferenceManager().saveUserId(userModel.getData().getUser().getId());
-        saveUserValue(userModel);
-        saveUserFields(userModel);
-        saveFirstSecondNameUser(userModel);
-        saveUserPhotoAndAvatar(userModel);
+        saveUserValues(userModel);
+//        saveUserFields(userModel);
+//        saveFirstSecondNameUser(userModel);
+//        saveUserPhotoAndAvatar(userModel);
+        saveUserInDb();
 
-        Intent loginIntent = new Intent(this, MainActivity.class);
-        startActivity(loginIntent);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent loginIntent = new Intent(AuthActivity.this, UserListActivity.class);
+                startActivity(loginIntent);
+            }
+        }, AppConfig.START_DELAY);
+
 
     }
 
@@ -112,12 +136,54 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void saveUserValue(UserModelRes userModel) {
+    private void saveUserValues(UserModelRes userModel) {
         int[] userValues = {userModel.getData().getUser().getProfileValues().getRating(),
                 userModel.getData().getUser().getProfileValues().getLinesCode(),
                 userModel.getData().getUser().getProfileValues().getProjects()};
         DataManager.getInstance().getPreferenceManager().saveUserValues(userValues);
 
+    }
+
+    private void saveUserInDb() {
+        Call<UserListRes> call = mDataManager.getUserListFromNetwork();
+
+        call.enqueue(new Callback<UserListRes>() {
+            @Override
+            public void onResponse(Call<UserListRes> call, Response<UserListRes> response) {
+
+                try {
+                    if (response.code() == 200) {
+
+                        List<Repository> allRepositories = new ArrayList<Repository>();
+                        List<User> allUser = new ArrayList<User>();
+
+                        for (UserListRes.UserData userRes : response.body().getData()) {
+                            allRepositories.addAll(getRepoListFromUserRes(userRes));
+                            allUser.add(new User(userRes));
+                        }
+
+                        mRepositoryDao.insertOrReplaceInTx(allRepositories);
+                        mUserDao.insertOrReplaceInTx(allUser);
+
+                    } else if (response.code() == 401) {
+                        return;
+                    } else {
+                        showSnackbar("Список пользователей не может быть получен");
+                        Log.e(TAG, "onResponse: " + String.valueOf(response.errorBody().source()));
+
+                    }
+
+                } catch (NullPointerException e) {
+                    Log.e(TAG, e.toString());
+                    showSnackbar("Something going wrong");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserListRes> call, Throwable t) {
+
+            }
+        });
     }
 
     private void saveUserFields(UserModelRes userModel) {
@@ -145,4 +211,15 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         DataManager.getInstance().getPreferenceManager().saveUserPhoto(userModel.getData().getUser().getPublicInfo().getPhoto());
         DataManager.getInstance().getPreferenceManager().saveAvatarImage(userModel.getData().getUser().getPublicInfo().getAvatar());
     }
+
+    private List<Repository> getRepoListFromUserRes(UserListRes.UserData userData) {
+        final String userId = userData.getId();
+        List<Repository> repositories = new ArrayList<>();
+        for (UserModelRes.Repo repoRes : userData.getRepositories().getRepo()) {
+            repositories.add(new Repository(repoRes, userId));
+        }
+        return repositories;
+    }
+
+
 }

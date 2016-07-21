@@ -12,6 +12,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         style="@style/custom_AppBarLayout"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:fitsSystemWindows="true"
 
         >
 
@@ -20,51 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentScrim="@color/color_primary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/user_photo_img"
+                style="@style/image_view_user_photo"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
-                android:fitsSystemWindows="true">
 
-                <ImageView
-
-                    android:id="@+id/user_photo_img"
-                    style="@style/image_view_user_photo"
-                    android:src="@drawable/user_photo"
-                    />
-
-                <RelativeLayout
-                    android:id="@+id/profile_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_background"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/photo_placeholder"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/spacing_small_8"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/change_user_photo"
-                        android:textColor="@color/white"/>
-
-                    <ImageView
-                        android:id="@+id/photo_placeholder"
-                        android:layout_width="@dimen/placeholder_photo_size_90"
-                        android:layout_height="@dimen/placeholder_photo_size_90"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="@dimen/size_medium_56"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/add_a_photo_48px"
-                        />
-                </RelativeLayout>
-
-            </FrameLayout>
+                android:src="@drawable/user_photo"
+                />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
