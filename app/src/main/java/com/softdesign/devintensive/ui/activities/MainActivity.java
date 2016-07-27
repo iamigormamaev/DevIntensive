@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -22,8 +21,6 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -63,7 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mEmailSentImg;
     private CoordinatorLayout mCoordinatorLayout;
     private Toolbar mToolbar;
-    private DrawerLayout mNavigationDraver;
+    private DrawerLayout mNavigationDrawer;
     private FloatingActionButton mFloatingActionButton;
     private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUserBio;
     private List<EditText> mUserInfoViews;
@@ -115,7 +112,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mEmailSentImg.setOnClickListener(this);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mNavigationDraver = (DrawerLayout) findViewById(R.id.navigation_drawer);
+        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mFloatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
         mFloatingActionButton.setOnClickListener(this);
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
@@ -181,7 +178,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            mNavigationDraver.openDrawer(GravityCompat.START);
+            mNavigationDrawer.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -189,8 +186,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
 
-        if (mNavigationDraver.isDrawerOpen(GravityCompat.START)) {
-            mNavigationDraver.closeDrawer(GravityCompat.START);
+        if (mNavigationDrawer.isDrawerOpen(GravityCompat.START)) {
+            mNavigationDrawer.closeDrawer(GravityCompat.START);
         } else super.onBackPressed();
     }
 
@@ -285,20 +282,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                showSnackbar(item.getTitle().toString());
-                item.setChecked(true);
-                mNavigationDraver.closeDrawer(GravityCompat.START);
+                switch (item.getItemId()) {
+                    case R.id.user_profile_menu:
+                        /*Intent profileIntent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(profileIntent);*/
+                        item.setChecked(true);
+                        mNavigationDrawer.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.team_menu:
+                        Intent loginIntent = new Intent(MainActivity.this, UserListActivity.class);
+                        startActivity(loginIntent);
+                        item.setChecked(true);
+                        mNavigationDrawer.closeDrawer(GravityCompat.START);
+                        break;
+                }
                 return false;
             }
         });
         mHeaderAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.header_avatar_iv);
+
         Picasso.with(this)
                 .load(DataManager.getInstance().getPreferenceManager().getAvatarImage())
                 .into(mHeaderAvatar);
-//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.header_user_photo));
-//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), BitmapFactory.
-//        roundedBitmapDrawable.setCircular(true);
-//        mHeaderAvatar.setImageDrawable(roundedBitmapDrawable);
+
+
 
         TextView headerFirstSecondName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_user_name_txt);
         headerFirstSecondName.setText(DataManager.getInstance().getPreferenceManager().getFirstNameUser() + " "

@@ -139,6 +139,10 @@
             public String getGit() {
                 return git;
             }
+
+            public String getId() {
+                return id;
+            }
         }
 
         public class Repositories {

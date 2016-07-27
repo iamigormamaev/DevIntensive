@@ -28,5 +28,5 @@ public interface ConstantManager {
     int DIAL_REQUEST_PERMISSION_CODE = 6;
 
 
-
+    int SEARCH_DELAY = 1000;
 }

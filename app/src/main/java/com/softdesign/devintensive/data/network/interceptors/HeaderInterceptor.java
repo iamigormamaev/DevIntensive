@@ -10,7 +10,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class HeaderInterceptor implements Interceptor{
+public class HeaderInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -20,7 +20,8 @@ public class HeaderInterceptor implements Interceptor{
         Request.Builder requestBilder = original.newBuilder()
                 .header("X-Access-Token", pm.getAuthToken())
                 .header("Request-User-Id", pm.getUserId())
-                .header("User-Agent","DevIntensiveApp");
+                .header("User-Agent", "DevIntensiveApp")
+                .header("Cache-Control", "max-age=" + (60 * 60 * 24));
         Request request = requestBilder.build();
         return chain.proceed(request);
     }

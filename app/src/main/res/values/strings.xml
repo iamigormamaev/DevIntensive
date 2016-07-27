@@ -38,4 +38,5 @@
     <string name="ff_medium">sans-serif-medium</string>
     <string name="view_profile">Просмотр</string>
     <string name="first_name_second_name">Фамилия Имя</string>
+    <string name="user_search">Поиск пользователя</string>
 </resources>
